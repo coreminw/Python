@@ -17,3 +17,11 @@ def factorial2(n):
         return n * factorial(n - 1)
 print(factorial(10))
 print(factorial2(10))
+
+def gcd(m,n):
+    if m == n:
+        return m
+    elif m > n:
+        return gcd(m-n, n)
+    else: # m < n
+        return gcd(m, n-m)
