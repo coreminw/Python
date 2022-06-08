@@ -25,3 +25,9 @@ def gcd(m,n):
         return gcd(m-n, n)
     else: # m < n
         return gcd(m, n-m)
+
+def fibonacci(n):
+    if n == 1 or n == 2: # 재귀호출 탈출 조건
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
