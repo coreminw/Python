@@ -135,12 +135,27 @@ def circle_Area(t):
     return area
 
 def rectangle_Area(t):
-    area = (t[0] - t[2]) * (t[1] - t[3])
+    w = t[0] - t[2]
+    h = t[1] - t[3]
+    if w < 0:
+        w *= -1
+    if h < 0:
+        h *= -1
+    area = w * h
     return area
 
 def triangle_Area(t):
-    area = (t[1] - t[5]) * (t[4] - t[0]) / 2
-    return area
+    x1 = t[0]
+    y1 = t[1]
+    x2 = t[2]
+    y2 = t[3]
+    x3 = t[4]
+    y3 = t[5]
+    a = math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
+    b = math.sqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1))
+    c = math.sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3))
+    s = (a + b + c) / 2
+    return math.sqrt(s * (s - a) + (s - b) * (s - c))
 
 def main(myList):
     for i in range(0, len(myList), 2):
