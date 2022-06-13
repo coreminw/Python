@@ -112,38 +112,48 @@ def readingData():
         if whatShape == "사각형":
             x1, y1 = xy()
             x2, y2 = xy()
-            myList.append(whatShape, (x1, y1, x2, y2))
+            t = (x1, y1, x2, y2)
+            myList.append(whatShape)
+            myList.append(t)
         elif whatShape == "삼각형":
             x1, y1 = xy()
             x2, y2 = xy()
             x3, y3 = xy()
-            myList.append(whatShape, (x1, y1, x2, y2, x3, y3))
+            t = (x1, y1, x2, y2, x3, y3)
+            myList.append(whatShape)
+            myList.append(t)
         elif whatShape == "원":
             x1, y1 = xy()
             r = int(input("반지름을 입력하시오: "))
-            myList.append(whatShape, (x1, y1, r))
+            t = (x1, y1, r)
+            myList.append(whatShape)
+            myList.append(t)
     return myList
 
-def circle_Area(x1, y1, r):
-    area = math.pi * r * r
+def circle_Area(t):
+    area = math.pi * t[2] * t[2]
     return area
 
-def rectangle_Area(x1, y1, x2, y2):
-    area = (x1 - x2) * (y1 - y2)
+def rectangle_Area(t):
+    area = (t[0] - t[2]) * (t[1] - t[3])
     return area
 
-def triangle_Area(x1, y1, x2, y2, x3, y3):
-    area = (y1 - y3) * (x3 - x1) / 2
+def triangle_Area(t):
+    area = (t[1] - t[5]) * (t[4] - t[0]) / 2
     return area
 
 def main(myList):
-    for (i, j) in myList:
-        if myList[i] == "원":
-            return circle_Area(j)
-        elif myList[i] == "사각형":
-            return rectangle_Area(j)
-        elif myList[i] == "삼각형":
-            return triangle_Area(j)
+    for i in range(0, len(myList), 2):
+        shapeName = myList[i]
+        shapeArea = myList[i+1]
+        if shapeName == "원":
+            area = circle_Area(shapeArea)
+        elif shapeName == "사각형":
+            area = rectangle_Area(shapeArea)
+        elif shapeName == "삼각형":
+            area = triangle_Area(shapeArea)
+        print("도형: ", shapeName)
+        print("면적: ", area)
 
 lst = readingData()
 main(lst)
