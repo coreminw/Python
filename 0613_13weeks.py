@@ -16,7 +16,7 @@ try:
     num = int(s)
 except ValueError:
     print("Faild converting " + s + " to int")
-    sys.exit()
+    # sys.exit()
 except IOError:
     print("IOError occur")
     sys.exit()
@@ -25,3 +25,14 @@ except:
     sys.exit()
 
 print("end")
+
+
+s = input("정수 한개를 입력하세요: ")
+
+try:
+    num = int(s)
+    print(num)
+except ValueError:
+    s = input("잘못 입력되었습니다. 정수를 입력해주세요: ")
+    num = int(s)
+    print(num)
